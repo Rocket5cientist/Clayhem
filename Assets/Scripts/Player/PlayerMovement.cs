@@ -18,9 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public CooldownManager cooldownManager;
 
     [Header("Weapons")]
-    public GameObject bulletSpawnPoint;
-    public float waitTime;
-
 
 
     private float gravityValue = -9.8f;
@@ -38,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
     private Vector2 aim;
     private bool teleportPressed;
-    private bool firePressed;
 
     private PlayerControls playerControls;
     private PlayerInput playerInput;
@@ -73,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
         movement = playerControls.Controls.Movement.ReadValue<Vector2>();
         aim = playerControls.Controls.Aim.ReadValue<Vector2>();
         teleportPressed = playerControls.Controls.Teleport.WasReleasedThisFrame();
-        firePressed = playerControls.Controls.Fire.triggered;
     }
 
     void HandleMovement() {
@@ -85,10 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (teleportPressed) {
             Teleport();
-        }
-
-        if (firePressed) {
-            Fire();
         }
     }
 
@@ -112,10 +103,6 @@ public class PlayerMovement : MonoBehaviour
                 LookAt(point);
             }
         }
-    }
-
-    void Fire() {
-
     }
 
     void Teleport() {
