@@ -15,10 +15,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int teleportCooldownTime = 10;
     [SerializeField] private bool teleportReady = true;
     [SerializeField] private GameObject teleportGuide;
+
     public CooldownManager cooldownManager;
-
-    [Header("Weapons")]
-
 
     private float gravityValue = -9.8f;
     private float controllerDeadzone = 0.1f;
@@ -36,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 aim;
     private bool teleportPressed;
 
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
     private PlayerInput playerInput;
 
     private void Awake() {
