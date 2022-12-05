@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 public class Gun : MonoBehaviour
 {
     public PlayerMovement movement;
-    private BulletDestroy bulletDestroy;
 
     private Vector3 bulletSpawnRotation;
 
+    //Input Handling
+    bool reloadPressed;
     bool firePressed;    
 
     [Header("Stats")]
@@ -30,18 +31,59 @@ public class Gun : MonoBehaviour
     [SerializeField] private float reloadTime;
     [SerializeField] private float fireRate;
     [SerializeField] private float nextTimeToFire = 0f;
+    private bool isReloading = false;
+
+    public Animator animator;
 
     private void Start() {
         currentAmmo = maxAmmo;
     }
 
+    private void OnEnable() {
+        isReloading = false;
+        animator.SetBool("Reloading", false);
+    }
+
+    void HandleInput() {
+        if (isAutomatic) {
+            firePressed = movement.playerControls.Controls.Fire.triggered;
+        }
+        else {
+            firePressed = movement.playerControls.Controls.Fire.WasPressedThisFrame();
+        }
+
+        reloadPressed = movement.playerControls.Controls.Reload.triggered;
+    }
+
     void Update() {
-        firePressed = movement.playerControls.Controls.Fire.IsPressed();
+        HandleInput();
+
+        if (isReloading) {
+            return;
+        }
+
+        if (currentAmmo <= 0 || reloadPressed) {
+            StartCoroutine(Reload());
+            return;
+        }
 
         if (firePressed && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
         }
+    }
+
+    IEnumerator Reload() {
+        isReloading = true;
+
+        animator.SetBool("Reloading", true);
+
+        yield return new WaitForSeconds(reloadTime - .25f);
+        animator.SetBool("Reloading", false);
+        yield return new WaitForSeconds(.25f);
+
+        currentAmmo = maxAmmo;
+        isReloading = false;
     }
 
     void Shoot() {

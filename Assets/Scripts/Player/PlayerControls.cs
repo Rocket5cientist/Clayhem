@@ -62,6 +62,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bea4888-432f-488a-a354-76f5a0bda47b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +205,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Teleport"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb7c5c7d-3dad-4112-bbfc-7c122c49536c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6caed66-1439-4869-b080-57ebb291d51b"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -236,6 +267,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Controls_Aim = m_Controls.FindAction("Aim", throwIfNotFound: true);
         m_Controls_Fire = m_Controls.FindAction("Fire", throwIfNotFound: true);
         m_Controls_Teleport = m_Controls.FindAction("Teleport", throwIfNotFound: true);
+        m_Controls_Reload = m_Controls.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -299,6 +331,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controls_Aim;
     private readonly InputAction m_Controls_Fire;
     private readonly InputAction m_Controls_Teleport;
+    private readonly InputAction m_Controls_Reload;
     public struct ControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -307,6 +340,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Aim => m_Wrapper.m_Controls_Aim;
         public InputAction @Fire => m_Wrapper.m_Controls_Fire;
         public InputAction @Teleport => m_Wrapper.m_Controls_Teleport;
+        public InputAction @Reload => m_Wrapper.m_Controls_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -328,6 +362,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Teleport.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnTeleport;
                 @Teleport.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnTeleport;
                 @Teleport.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnTeleport;
+                @Reload.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnReload;
             }
             m_Wrapper.m_ControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -344,6 +381,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Teleport.started += instance.OnTeleport;
                 @Teleport.performed += instance.OnTeleport;
                 @Teleport.canceled += instance.OnTeleport;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
             }
         }
     }
@@ -372,5 +412,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnTeleport(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }

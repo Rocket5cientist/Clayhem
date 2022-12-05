@@ -216,7 +216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &93706653
 Transform:
   m_ObjectHideFlags: 0
@@ -1700,6 +1700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1948397408}
+  - component: {fileID: 1948397409}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -1715,7 +1716,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948397407}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48, y: -0.41333336, z: 0.72}
+  m_LocalPosition: {x: 0.48, y: -0.109, z: 0.72}
   m_LocalScale: {x: 1, y: 1.3333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1723,6 +1724,26 @@ Transform:
   m_Father: {fileID: 2108079035}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1948397409
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948397407}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5c4379116e26d9c4fbdd86ca69443f63, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2024643151
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,8 +2110,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719680782194688694}
   m_LocalRotation: {x: -0.012787864, y: 0.70699114, z: 0.70699114, w: 0.012787866}
-  m_LocalPosition: {x: 0, y: 0.098, z: -0.146}
-  m_LocalScale: {x: 5.973082, y: 8.872753, z: 17.063852}
+  m_LocalPosition: {x: 0, y: -0.120250024, z: -0.14600003}
+  m_LocalScale: {x: 5.973082, y: 8.872753, z: 17.063854}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 146792709}
@@ -2182,12 +2203,13 @@ MonoBehaviour:
   damage: 0
   criticalDamage: 0
   range: 100
-  bulletSpeed: 2500
+  bulletSpeed: 3500
   isAutomatic: 0
   maxAmmo: 9
   currentAmmo: 9
   bulletSpawn: {fileID: 146792708}
   bullet: {fileID: 2389653071345515677, guid: 3cafc39a3d780d44a8ef201c8f249ea9, type: 3}
-  reloadTime: 0
-  fireRate: 15
-  nextTimeToFire: 1
+  reloadTime: 1
+  fireRate: 2
+  nextTimeToFire: 0
+  animator: {fileID: 1948397409}

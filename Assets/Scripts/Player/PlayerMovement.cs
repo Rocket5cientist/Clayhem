@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private WaitForSeconds secondIncrement = new WaitForSeconds(.05f);
 
-    //Input
+    //Input Handling
     private Vector2 movement;
     private Vector2 aim;
     private bool teleportPressed;
