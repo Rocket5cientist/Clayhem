@@ -1995,6 +1995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
+  jumpForce: 0.7
   teleportCooldownTime: 10
   teleportReady: 1
   teleportGuide: {fileID: 93706652}
@@ -2054,6 +2055,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7cb2969c-e76b-40e8-bbd8-593ece966d00
     m_ActionName: Controls/Dash[/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger,/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1bea4888-432f-488a-a354-76f5a0bda47b
+    m_ActionName: Controls/Reload[/Keyboard/r,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c17085aa-b85a-4fe3-9e08-403e9f0efddd
+    m_ActionName: Controls/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 05aa82ed-19fa-4d35-9902-7eca6c65aff9
+    m_ActionName: Controls/Debug[/Keyboard/f3]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Controls
@@ -2203,7 +2216,7 @@ MonoBehaviour:
   damage: 0
   criticalDamage: 0
   range: 100
-  bulletSpeed: 3500
+  bulletSpeed: 5000
   isAutomatic: 0
   maxAmmo: 9
   currentAmmo: 9
