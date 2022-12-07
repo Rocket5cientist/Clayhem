@@ -32,7 +32,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""b7ebf1d4-408a-4697-ac10-8fc8d2942256"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""StickDeadzone"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
@@ -41,7 +41,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""f955d897-ef06-402c-aa21-cf6fe7f1cd04"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""StickDeadzone"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
@@ -67,24 +67,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""Reload"",
                     ""type"": ""Button"",
                     ""id"": ""1bea4888-432f-488a-a354-76f5a0bda47b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""c17085aa-b85a-4fe3-9e08-403e9f0efddd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Debug"",
-                    ""type"": ""Button"",
-                    ""id"": ""05aa82ed-19fa-4d35-9902-7eca6c65aff9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -245,39 +227,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3ce0dc0c-78d1-47de-bf8c-dcc05f7d6657"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""80664a8c-28c8-447d-9f2b-4a69404a1f4b"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2a66f287-1641-431b-b6d3-fea4c44af79b"",
-                    ""path"": ""<Keyboard>/f3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Debug"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -319,8 +268,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Controls_Fire = m_Controls.FindAction("Fire", throwIfNotFound: true);
         m_Controls_Teleport = m_Controls.FindAction("Teleport", throwIfNotFound: true);
         m_Controls_Reload = m_Controls.FindAction("Reload", throwIfNotFound: true);
-        m_Controls_Jump = m_Controls.FindAction("Jump", throwIfNotFound: true);
-        m_Controls_Debug = m_Controls.FindAction("Debug", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -385,8 +332,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controls_Fire;
     private readonly InputAction m_Controls_Teleport;
     private readonly InputAction m_Controls_Reload;
-    private readonly InputAction m_Controls_Jump;
-    private readonly InputAction m_Controls_Debug;
     public struct ControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -396,8 +341,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Controls_Fire;
         public InputAction @Teleport => m_Wrapper.m_Controls_Teleport;
         public InputAction @Reload => m_Wrapper.m_Controls_Reload;
-        public InputAction @Jump => m_Wrapper.m_Controls_Jump;
-        public InputAction @Debug => m_Wrapper.m_Controls_Debug;
         public InputActionMap Get() { return m_Wrapper.m_Controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -422,12 +365,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reload.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnReload;
-                @Jump.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnJump;
-                @Debug.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnDebug;
-                @Debug.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnDebug;
-                @Debug.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnDebug;
             }
             m_Wrapper.m_ControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -447,12 +384,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Debug.started += instance.OnDebug;
-                @Debug.performed += instance.OnDebug;
-                @Debug.canceled += instance.OnDebug;
             }
         }
     }
@@ -482,7 +413,5 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnTeleport(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnDebug(InputAction.CallbackContext context);
     }
 }

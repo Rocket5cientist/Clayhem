@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private float playerSpeed;
-    [SerializeField] private float jumpForce;
 
     [Header("Teleport")]
     [SerializeField] private int teleportCooldownTime = 10;
@@ -19,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     public CooldownManager cooldownManager;
 
-    private float gravityValue = -20f;
+    private float gravityValue = -9.8f;
     private float controllerDeadzone = 0.1f;
     private float rotateSmoothing = 1000f;
     private Vector3 playerVelocity;
@@ -34,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
     private Vector2 aim;
     private bool teleportPressed;
-    private bool jumpPressed;
 
     public PlayerControls playerControls;
     private PlayerInput playerInput;
@@ -69,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
         movement = playerControls.Controls.Movement.ReadValue<Vector2>();
         aim = playerControls.Controls.Aim.ReadValue<Vector2>();
         teleportPressed = playerControls.Controls.Teleport.WasReleasedThisFrame();
-        jumpPressed = playerControls.Controls.Jump.triggered;
     }
 
     void HandleMovement() {
@@ -82,10 +79,6 @@ public class PlayerMovement : MonoBehaviour
         if (teleportPressed) {
             Teleport();
         }
-
-        //if (jumpPressed) {
-        //    Jump();
-        //}
     }
 
     void HandleRotation() {
@@ -135,16 +128,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         teleportReady = true;
-    }
-
-    void Jump() {
-        if(controller.isGrounded && playerVelocity.y < 0) {
-            playerVelocity.y = 0;
-        }
-
-        if (controller.isGrounded) {
-            playerVelocity.y += Mathf.Sqrt(jumpForce * -3.0f * gravityValue);
-        }
     }
 
     private void LookAt(Vector3 lookPoint) {

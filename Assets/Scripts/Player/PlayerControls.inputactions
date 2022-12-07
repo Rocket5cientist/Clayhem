@@ -10,7 +10,7 @@
                     "type": "PassThrough",
                     "id": "b7ebf1d4-408a-4697-ac10-8fc8d2942256",
                     "expectedControlType": "Vector2",
-                    "processors": "StickDeadzone",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
@@ -19,7 +19,7 @@
                     "type": "PassThrough",
                     "id": "f955d897-ef06-402c-aa21-cf6fe7f1cd04",
                     "expectedControlType": "Vector2",
-                    "processors": "StickDeadzone",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
@@ -45,24 +45,6 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "1bea4888-432f-488a-a354-76f5a0bda47b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "c17085aa-b85a-4fe3-9e08-403e9f0efddd",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Debug",
-                    "type": "Button",
-                    "id": "05aa82ed-19fa-4d35-9902-7eca6c65aff9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -221,39 +203,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Reload",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3ce0dc0c-78d1-47de-bf8c-dcc05f7d6657",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "80664a8c-28c8-447d-9f2b-4a69404a1f4b",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2a66f287-1641-431b-b6d3-fea4c44af79b",
-                    "path": "<Keyboard>/f3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Debug",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
