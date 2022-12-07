@@ -28,8 +28,6 @@ public class BulletDestroy : MonoBehaviour
         rb.velocity = Vector3.zero;
         ParticleSystem impact = Instantiate(impactEffect, gameObject.transform.position, gameObject.transform.rotation);
 
-        Destroy(impact, 1f);
-
         Destroy(gameObject);
     }
 
