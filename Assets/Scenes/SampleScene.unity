@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 29721904}
   - component: {fileID: 29721903}
   m_Layer: 5
-  m_Name: TeleportIcon
+  m_Name: DashIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,89 +199,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29721901}
   m_CullTransparentMesh: 1
---- !u!1 &93706652
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 93706653}
-  - component: {fileID: 93706656}
-  - component: {fileID: 93706655}
-  m_Layer: 0
-  m_Name: DashTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &93706653
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93706652}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 13}
-  m_LocalScale: {x: 1, y: 0.055962, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2108079035}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &93706655
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93706652}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f13dd71728491bc4dbf447a46c2e71d8, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &93706656
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93706652}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &146792708
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,7 +647,7 @@ GameObject:
   - component: {fileID: 719136478}
   - component: {fileID: 719136479}
   m_Layer: 5
-  m_Name: Teleport
+  m_Name: Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1666,7 +1583,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9588816, y: 1}
+    m_SensorSize: {x: 1.955665, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1722,7 +1639,7 @@ Transform:
   m_Children:
   - {fileID: 195626720044488716}
   m_Father: {fileID: 2108079035}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1948397409
 Animator:
@@ -1907,6 +1824,7 @@ GameObject:
   - component: {fileID: 2108079036}
   - component: {fileID: 2108079040}
   - component: {fileID: 2108079039}
+  - component: {fileID: 2108079041}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1977,7 +1895,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 412987973}
-  - {fileID: 93706653}
   - {fileID: 1948397408}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1995,9 +1912,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  teleportCooldownTime: 10
-  teleportReady: 1
-  teleportGuide: {fileID: 93706652}
+  dashForce: 100
+  dashCooldownTime: 10
+  dashReady: 1
   cooldownManager: {fileID: 2108079040}
   isGamepad: 0
 --- !u!114 &2108079037
@@ -2054,6 +1971,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7cb2969c-e76b-40e8-bbd8-593ece966d00
     m_ActionName: Controls/Dash[/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger,/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1bea4888-432f-488a-a354-76f5a0bda47b
+    m_ActionName: Controls/Reload[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Controls
@@ -2101,7 +2022,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4903798182f28d448b2b5492d4d21b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportCooldown: {fileID: 719136479}
+  dashCooldown: {fileID: 719136479}
+--- !u!114 &2108079041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108079031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffc63a0e14653647b68344df1848a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &195626720044488716
 Transform:
   m_ObjectHideFlags: 0
@@ -2202,6 +2135,7 @@ MonoBehaviour:
   movement: {fileID: 2108079036}
   damage: 0
   criticalDamage: 0
+  recoilForce: 10
   range: 100
   bulletSpeed: 3500
   isAutomatic: 0

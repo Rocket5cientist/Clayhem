@@ -12,9 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float playerSpeed;
 
     [Header("Teleport")]
-    [SerializeField] private int teleportCooldownTime = 10;
-    [SerializeField] private bool teleportReady = true;
-    [SerializeField] private GameObject teleportGuide;
+    [SerializeField] private float dashForce = 100;
+    [SerializeField] private int dashCooldownTime = 10;
+    [SerializeField] private bool dashReady = true;
 
     public CooldownManager cooldownManager;
 
@@ -27,25 +27,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isGamepad;
 
     private CharacterController controller;
+    private PlayerImpact playerImpact;
     private WaitForSeconds secondIncrement = new WaitForSeconds(.05f);
 
     //Input Handling
     private Vector2 movement;
     private Vector2 aim;
-    private bool teleportPressed;
+    private bool dashPressed;
 
     public PlayerControls playerControls;
     private PlayerInput playerInput;
 
     private void Awake() {
         controller = GetComponent<CharacterController>();
+        playerImpact = GetComponent<PlayerImpact>();
         playerControls = new PlayerControls();
         playerInput = GetComponent<PlayerInput>();
 
-        teleportGuide.SetActive(false);
-
-        cooldownManager.teleportCooldown.maxValue = teleportCooldownTime;
-        cooldownManager.SetTeleport(teleportCooldownTime);
+        cooldownManager.dashCooldown.maxValue = dashCooldownTime;
+        cooldownManager.SetDash(dashCooldownTime);
     }
 
     private void OnEnable() {
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     void HandleInput() {
         movement = playerControls.Controls.Movement.ReadValue<Vector2>();
         aim = playerControls.Controls.Aim.ReadValue<Vector2>();
-        teleportPressed = playerControls.Controls.Teleport.WasReleasedThisFrame();
+        dashPressed = playerControls.Controls.Dash.WasReleasedThisFrame();
     }
 
     void HandleMovement() {
@@ -76,8 +76,8 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-        if (teleportPressed) {
-            Teleport();
+        if (dashPressed) {
+            Dash();
         }
     }
 
@@ -103,31 +103,33 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Teleport() {
-        if (teleportReady == false) {
+    void Dash() {
+        if (dashReady == false) {
             return;
         }
 
-        teleportGuide.SetActive(true);
-        controller.transform.position = teleportGuide.transform.position;
-        teleportGuide.SetActive(false);
+        playerImpact.AddImpact(transform.forward, dashForce);
  
-        StartCoroutine(TeleportCooldown());
+        StartCoroutine(DashCooldown());
     }
 
-    private IEnumerator TeleportCooldown() {
-        teleportReady = false;
-        float currentTeleport = 0f;
+    public void Recoil(float recoilMultiplier) {
+        playerImpact.AddImpact(-transform.forward, recoilMultiplier);
+    }
 
-        cooldownManager.SetTeleport(currentTeleport);
+    private IEnumerator DashCooldown() {
+        dashReady = false;
+        float currentDash = 0f;
 
-        while(currentTeleport < teleportCooldownTime) {
-            currentTeleport += .05f;
-            cooldownManager.SetTeleport(currentTeleport);
+        cooldownManager.SetDash(currentDash);
+
+        while(currentDash < dashCooldownTime) {
+            currentDash += .05f;
+            cooldownManager.SetDash(currentDash);
             yield return secondIncrement;
         }
 
-        teleportReady = true;
+        dashReady = true;
     }
 
     private void LookAt(Vector3 lookPoint) {

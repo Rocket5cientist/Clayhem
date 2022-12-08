@@ -16,6 +16,7 @@ public class Gun : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private float damage;
     [SerializeField] private float criticalDamage;
+    [SerializeField] private float recoilForce;
     [SerializeField] public float range;
     [SerializeField] public float bulletSpeed;
 
@@ -70,6 +71,7 @@ public class Gun : MonoBehaviour
         if (firePressed && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
+            movement.Recoil(recoilForce);
         }
     }
 

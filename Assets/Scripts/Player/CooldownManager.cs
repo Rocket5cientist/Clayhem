@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class CooldownManager : MonoBehaviour
 {
-    public Slider teleportCooldown;
+    public Slider dashCooldown;
 
-    public void SetTeleport(float teleport) {
-        teleportCooldown.value = teleport;
+    public void SetDash(float dash) {
+        dashCooldown.value = dash;
     }
 }
