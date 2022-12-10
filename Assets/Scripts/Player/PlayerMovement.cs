@@ -108,7 +108,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        playerImpact.AddImpact(transform.forward, dashForce);
+        Vector3 move = new Vector3(movement.x, 0, movement.y);
+        playerImpact.AddImpact(move, dashForce);
  
         StartCoroutine(DashCooldown());
     }
