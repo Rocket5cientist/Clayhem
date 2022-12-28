@@ -6,6 +6,6 @@ using UnityEngine;
 public class ParticleDestroy : MonoBehaviour
 {
     private void OnEnable() {
-        Destroy(gameObject, .5f);
+        Destroy(gameObject, transform.GetComponent<ParticleSystem>().main.duration);
     }
 }

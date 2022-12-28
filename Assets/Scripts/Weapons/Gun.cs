@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
-    public PlayerMovement movement;
+    private PlayerMovement movement;
 
     private Vector3 bulletSpawnRotation;
 
@@ -22,6 +22,11 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private bool isAutomatic;
 
+    [Header("Explosion Stats")]
+    [SerializeField] public bool isExplosive;
+    [SerializeField] public float expRadius;
+    [SerializeField] public float expPower;
+
     [Header("Ammo")]
     [SerializeField] private float maxAmmo;
     [SerializeField] private float currentAmmo;
@@ -37,6 +42,8 @@ public class Gun : MonoBehaviour
     public Animator animator;
 
     private void Start() {
+        movement = transform.root.GetComponent<PlayerMovement>();
+
         currentAmmo = maxAmmo;
     }
 
